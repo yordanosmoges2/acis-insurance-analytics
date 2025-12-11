@@ -1,46 +1,98 @@
-# ACIS Insurance Analytics
+# ACIS Insurance Analytics – Final Project
 
-This project analyzes insurance data to understand claims, loss ratios, and risk patterns using Exploratory Data Analysis (EDA).  
-Data is version-controlled using DVC for reproducibility.
+This project analyzes customer data to predict whether a proposed insurance policy will be accepted.  
+The workflow follows the AIDA corporate process and includes EDA, hypothesis validation, machine learning, and model explainability.
 
 ---
 
-## Quick Start
+## 📌 Deliverables by Task
 
-```bash
-# 1️⃣ Clone repo
-git clone <YOUR_REPO_URL>
-cd acis-insurance-analytics
+### 🧩 Task 1 — Business Understanding
+- Objective: **Predict customer acceptance** of a proposed rating
+- Success Metrics:
+  - Improve acceptance prediction accuracy
+  - Reduce underwriting manual work
+  - Identify key premium-driving factors influencing acceptance
+- Stakeholders: ACIS Underwriting, Pricing Team, Business Leads
 
-# 2️⃣ Activate environment
-python -m venv venv
-venv\Scripts\activate    # Windows
+---
 
-# 3️⃣ Install dependencies
-pip install -r requirements.txt
+### 🔍 Task 2 — Hypothesis + Data Dictionary
+- Key Hypotheses:
+  - H1: Higher premium → lower acceptance
+  - H2: Newer vehicles → higher acceptance
+  - H3: Customers selecting **No Excess** more likely to accept
+- Data Dictionary Summary:
+  - Numeric: Premium, mmcode, Vehicle age, Cylinders
+  - Categorical: Product type, Excess level, Province, Risk category
+- Target Variable: `Acceptance_Flag`
 
-# 4️⃣ Pull dataset (DVC)
-dvc pull
+---
 
-# 5️⃣ Run Notebook
-jupyter notebook notebooks/task1_eda.ipynb
-📊 Project Structure
+### 📊 Task 3 — EDA & Data Cleaning
+- Missing values handled via imputation
+- Numeric/categorical separation for modeling
+- Distributions, correlations visualized
+- Outliers investigated via boxplots
+- Business insights extracted (premium + acceptance patterns)
+
+Notebook: `notebooks/task3_eda.ipynb`
+
+---
+
+### 🤖 Task 4 — Modeling
+- Model: **Random Forest Classifier** wrapped in `Pipeline`
+- Stratified train/test split
+- Class imbalance handled using `class_weight="balanced"`
+- Evaluation metrics:
+  - Accuracy: XX%
+  - ROC-AUC: XX%
+  - Precision/Recall: reported in notebook
+
+Notebook: `notebooks/task4_modeling.ipynb`
+
+---
+
+### 🧠 Task 5 — Explainability (XAI)
+- Feature Importances show strongest drivers:
+  - ❗ Premium features most important in decisions
+  - 🚗 New registration years increase acceptance
+  - ⚠ Excess selection affects customer price sensitivity
+- Methods used:
+  - Partial Dependence Plots (PDP)
+  - Model insights translated for business stakeholders
+
+Notebook: `notebooks/task5_explainability.ipynb`
+
+---
+
+## 📂 Repository Structure
+
 acis-insurance-analytics/
 │
-├── data/                         # DVC-tracked dataset folder
-│   └── MachineLearningRating_v3/
-│
 ├── notebooks/
-│   └── task1_eda.ipynb           # Core EDA work
-│
-├── src/
-│   ├── data_loader.py            # Data loading utilities
-│   └── eda_utils.py              # Feature engineering & visualization helpers
+│ ├─ task3_eda.ipynb
+│ ├─ task4_modeling.ipynb
+│ └─ task5_explainability.ipynb
 │
 ├── reports/
-│   └── interim_report.md         # Findings summary
+│ └─ interim_report.md
 │
-├── requirements.txt              # Python dependency list
-├── dvc.lock / dvc.yaml           # DVC metadata (optional pipeline stages)
 ├── README.md
-└── .gitignore / .dvcignore
+└── requirements.txt
+
+yaml
+Copy code
+
+---
+
+## 🛠️ Tools & Technologies
+- Python 3.12
+- Pandas, NumPy
+- Scikit-learn
+- Matplotlib
+
+---
+
+## 👤 Yordanos moges
+Yam — ACIS Insurance Analytics Project (Tasks 1–5)
